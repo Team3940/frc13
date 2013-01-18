@@ -2,3 +2,6 @@ PPC603gnu/
 Makefile
 .ucpp
 .wrmakefile
+.cproject
+.project
+.wrproject

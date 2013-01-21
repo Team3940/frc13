@@ -5,23 +5,30 @@
 #include "connections.h"
 #include "web/WebServer.h"
 #include "vision/GoalFinder.h"
+#include "systems/Drivetrain.h"
+#include "controllers/HumanDriver.h"
 
 class CTRobot : public SimpleRobot
 {
   private:
     GoalFinder *goalFinder;
     WebServer *webServer;
-    DriverStation *ds;
 
-    Talon *leftFrontDrive;
-    Talon *rightFrontDrive;
-    Talon *leftRearDrive;
-    Talon *rightRearDrive;
+    // subsystems
+    Drivetrain *drivetrain;
+
+    // controllers
+    HumanDriver *driver;
+
+    void UpdateSubsystems();
 
   public:
     CTRobot();
+    ~CTRobot();
     void Autonomous();
+    void Disabled();
     void OperatorControl();
+    void RobotInit();
 };
 
 #endif

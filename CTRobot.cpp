@@ -3,12 +3,11 @@
 
 CTRobot::CTRobot()
 {
-  ds = DriverStation::GetInstance();
+  // initialize systems
+  drivetrain = new Drivetrain();
 
-  leftFrontDrive = new Talon(PWM_DRIVE_LEFT_FRONT);
-  rightFrontDrive = new Talon(PWM_DRIVE_RIGHT_FRONT);
-  leftRearDrive = new Talon(PWM_DRIVE_LEFT_REAR);
-  rightRearDrive = new Talon(PWM_DRIVE_RIGHT_REAR);
+  // initialize controllers
+  driver = new HumanDriver();
 
   goalFinder = new GoalFinder("10.39.40.11");
   goalFinder->Start();
@@ -19,21 +18,47 @@ CTRobot::CTRobot()
   webServer->SetRequestHandler("/camera", visionHandler);
 }
 
+CTRobot::~CTRobot()
+{
+  delete drivetrain;
+  delete driver;
+  delete goalFinder;
+  delete webServer;
+}
+
+void CTRobot::UpdateSubsystems()
+{
+  drivetrain->Update();
+}
+
 void CTRobot::Autonomous()
 {
-  // do nothing for now...
+  while (IsAutonomous()) {
+    UpdateSubsystems();
+    Wait(0.005);
+  }
+}
+
+void CTRobot::Disabled()
+{
+  // do nothing
 }
 
 void CTRobot::OperatorControl()
 {
   while (IsOperatorControl())
   {
-    leftFrontDrive->Set(ds->GetStickAxis(1, 2) * -1);
-    rightFrontDrive->Set(ds->GetStickAxis(1, 4));
-    leftRearDrive->Set(ds->GetStickAxis(1, 2) * -1);
-    rightRearDrive->Set(ds->GetStickAxis(1, 4));
+    driver->Drive(drivetrain);
+
+    UpdateSubsystems();
+
     Wait(0.005);
   }
+}
+
+void CTRobot::RobotInit()
+{
+  // do nothing
 }
 
 START_ROBOT_CLASS(CTRobot);

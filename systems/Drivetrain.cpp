@@ -15,7 +15,7 @@ void Drivetrain::Update()
   leftFrontDrive->Set(leftThrottle);
   rightFrontDrive->Set(rightThrottle * -1);
   leftRearDrive->Set(leftThrottle);
-  rightFrontDrive->Set(rightThrottle * -1);
+  rightRearDrive->Set(rightThrottle * -1);
 }
 
 void Drivetrain::SetThrottles(float leftThrottle, float rightThrottle)

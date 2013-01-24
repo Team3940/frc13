@@ -3,6 +3,7 @@
 
 #include "WPILib.h"
 #include "connections.h"
+#include "auto/auto.h"
 #include "web/WebServer.h"
 #include "vision/GoalFinder.h"
 #include "systems/Drivetrain.h"
@@ -19,6 +20,8 @@ class CTRobot : public SimpleRobot
 
     // controllers
     HumanDriver *driver;
+
+    AutoCommand *baseCmd;
 
     void UpdateSubsystems();
 

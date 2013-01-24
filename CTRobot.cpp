@@ -16,6 +16,9 @@ CTRobot::CTRobot()
 
   HttpVisionHandler *visionHandler = new HttpVisionHandler(goalFinder);
   webServer->SetRequestHandler("/camera", visionHandler);
+
+  baseCmd = new SequentialCommand(new DriveCommand(drivetrain, 4, 0.21, 0.21), new DelayCommand(10), new DriveCommand(drivetrain, 5, -0.22, -0.22), NULL);
+  std::cout << baseCmd->ToString() << std::endl;
 }
 
 CTRobot::~CTRobot()
@@ -33,7 +36,9 @@ void CTRobot::UpdateSubsystems()
 
 void CTRobot::Autonomous()
 {
+  baseCmd->Reset();
   while (IsAutonomous()) {
+    baseCmd->Run();
     UpdateSubsystems();
     Wait(0.005);
   }

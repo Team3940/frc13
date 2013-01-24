@@ -17,7 +17,7 @@ class VisionProcess
     AxisCamera *camera;
 
   public:
-    VisionProcess(const char *cameraIp);
+    VisionProcess(const char *cameraIp = NULL);
     virtual ~VisionProcess();
     virtual void DoVision() = 0;
     virtual JpegFromImaq * GetDebugImage() = 0;

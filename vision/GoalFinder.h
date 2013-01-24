@@ -18,7 +18,7 @@ class GoalFinder : public VisionProcess
     ColorImage img;
 
   public:
-    GoalFinder(const char *cameraIp);
+    GoalFinder(const char *cameraIp = NULL);
     virtual void DoVision();
     JpegFromImaq * GetDebugImage();
 };

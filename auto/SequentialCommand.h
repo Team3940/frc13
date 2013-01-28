@@ -14,11 +14,10 @@ class SequentialCommand : public CompositeCommand
 {
   public:
     /**
-     * Constructs a new SequentialCommand made up of one or more
-     * AutoCommand objects.  Be sure to terminate the variable argument
-     * list with NULL.
-     */
-    SequentialCommand(AutoCommand *dummy, ...);
+      * Constructs a new SequentialCommand with no commands.  Add commands
+      * to execute sequentially with the << operator.
+      */
+    SequentialCommand();
 
     virtual ~SequentialCommand();
 

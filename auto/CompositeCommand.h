@@ -23,13 +23,13 @@ class CompositeCommand : public AutoCommand
 
     virtual bool Run() = 0;
 
-  protected:
     /**
-     * Constructs a new SequentialCommand made up of one or more
-     * AutoCommand objects.  Be sure to terminate the variable argument
-     * list with NULL.
-     */
-    CompositeCommand(AutoCommand *dummy, ...);
+     * Adds a command to be executed as a part of this composite command.
+     */    
+    CompositeCommand& operator << (AutoCommand *cmd);
+
+  protected:
+    CompositeCommand();
 
     std::vector<AutoCommand *> commands; ///< Stores the encapsulated commands.
 };

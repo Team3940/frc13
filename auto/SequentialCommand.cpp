@@ -2,7 +2,7 @@
 #include "AutoCommand.h"
 #include <sstream>
 
-SequentialCommand::SequentialCommand(AutoCommand *cmd, ...) : CompositeCommand(cmd)
+SequentialCommand::SequentialCommand()
 {
 }
 

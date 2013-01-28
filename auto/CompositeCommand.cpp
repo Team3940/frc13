@@ -2,16 +2,8 @@
 #include <sstream>
 #include <stdarg.h>
 
-CompositeCommand::CompositeCommand(AutoCommand *cmd, ...)
+CompositeCommand::CompositeCommand()
 {
-  va_list args;
-  va_start(args, cmd);
-
-  while (cmd != NULL) {
-    commands.push_back(cmd);
-    cmd = va_arg(args, AutoCommand *);
-  }
-  va_end(args);
 }
 
 CompositeCommand::~CompositeCommand()
@@ -40,4 +32,10 @@ std::string CompositeCommand::ToString()
     ss << "  " << commands[i]->ToString() << std::endl;
   }
   return ss.str();
+}
+
+CompositeCommand& CompositeCommand::operator << (AutoCommand *cmd)
+{
+  commands.push_back(cmd);
+  return *this;
 }

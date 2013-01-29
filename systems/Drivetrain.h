@@ -12,10 +12,10 @@ class Drivetrain
     void Drivetrain::SetThrottles(float leftThrottle, float rightThrottle);
 
   private:
-    SpeedController *leftFrontDrive;
-    SpeedController *rightFrontDrive;
-    SpeedController *leftRearDrive;
-    SpeedController *rightRearDrive;
+    Talon leftFrontDrive;
+    Talon rightFrontDrive;
+    Talon leftRearDrive;
+    Talon rightRearDrive;
 
     float leftThrottle;
     float rightThrottle;

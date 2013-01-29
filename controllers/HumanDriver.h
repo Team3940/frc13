@@ -9,12 +9,11 @@ class HumanDriver
 {
   public:
     HumanDriver();
-    ~HumanDriver();
     void Drive(Drivetrain *drivetrain);
 
   private:
-    Attack3Joystick *leftStick;
-    Attack3Joystick *rightStick;
+    Attack3Joystick leftStick;
+    Attack3Joystick rightStick;
 };
 
 #endif

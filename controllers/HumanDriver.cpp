@@ -1,18 +1,10 @@
 #include "HumanDriver.h"
 
-HumanDriver::HumanDriver()
+HumanDriver::HumanDriver() : leftStick(1), rightStick(3)
 {
-  leftStick = new Attack3Joystick(1);
-  rightStick = new Attack3Joystick(3);
-}
-
-HumanDriver::~HumanDriver()
-{
-  delete leftStick;
-  delete rightStick;
 }
 
 void HumanDriver::Drive(Drivetrain *drivetrain)
 {
-  drivetrain->SetThrottles(leftStick->GetY(), rightStick->GetY());
+  drivetrain->SetThrottles(leftStick.GetY(), rightStick.GetY());
 }

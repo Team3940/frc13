@@ -9,7 +9,7 @@
 #include <pthread.h>
 
 #include "HTTPRequest.h"
-#include "../net/CTSocket.h"
+#include "../util/CTSocket.h"
 #include "../vision/JpegFromImaq.h"
 
 #define PORT_NUMBER 80

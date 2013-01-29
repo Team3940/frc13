@@ -1,7 +1,7 @@
 #ifndef HTTPRESPONSE_H
 #define HTTPRESPONSE_H
 
-#include "../net/CTSocket.h"
+#include "../util/CTSocket.h"
 
 class HttpResponse
 {

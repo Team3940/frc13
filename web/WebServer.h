@@ -2,7 +2,7 @@
 #define WEBSERVER_H
 
 #include "WPILib.h"
-#include "../net/CTSocket.h"
+#include "../util/CTSocket.h"
 #include <string>
 #include <map>
 

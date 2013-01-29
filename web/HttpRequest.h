@@ -1,7 +1,7 @@
 #ifndef HTTPREQUEST_H
 #define HTTPREQUEST_H
 
-#include "../net/CTSocket.h"
+#include "../util/CTSocket.h"
 
 class HttpRequest
 {

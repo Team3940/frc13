@@ -7,7 +7,9 @@
 #include "web/WebServer.h"
 #include "vision/GoalFinder.h"
 #include "systems/Drivetrain.h"
+#include "systems/Climber.h"
 #include "controllers/HumanDriver.h"
+#include "controllers/HumanOperator.h"
 
 class CTRobot : public SimpleRobot
 {
@@ -17,9 +19,11 @@ class CTRobot : public SimpleRobot
 
     // subsystems
     Drivetrain *drivetrain;
+    Climber *climber;
 
     // controllers
     HumanDriver *driver;
+    HumanOperator *oper;
 
     AutoCommand *baseCmd;
 

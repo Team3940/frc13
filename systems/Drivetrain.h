@@ -9,7 +9,7 @@ class Drivetrain
   public:
     Drivetrain();
     void Update();
-    void Drivetrain::SetThrottles(float leftThrottle, float rightThrottle);
+    void SetThrottles(float leftThrottle, float rightThrottle);
 
   private:
     Talon leftFrontDrive;

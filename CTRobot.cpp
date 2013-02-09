@@ -5,17 +5,18 @@ CTRobot::CTRobot()
 {
   // initialize systems
   drivetrain = new Drivetrain();
+  climber = new Climber();
 
   // initialize controllers
   driver = new HumanDriver();
 
-  goalFinder = new GoalFinder("10.39.40.11");
-  goalFinder->Start();
+  //goalFinder = new GoalFinder("10.39.40.11");
+  //goalFinder->Start();
 
   webServer = new WebServer();
 
-  HttpVisionHandler *visionHandler = new HttpVisionHandler(goalFinder);
-  webServer->SetRequestHandler("/camera", visionHandler);
+  //HttpVisionHandler *visionHandler = new HttpVisionHandler(goalFinder);
+  //webServer->SetRequestHandler("/camera", visionHandler);
 
   SequentialCommand *seqCmd = new SequentialCommand();
   *seqCmd << new DriveCommand(drivetrain, 4, 0.21, 0.21)
@@ -36,6 +37,7 @@ CTRobot::CTRobot()
 CTRobot::~CTRobot()
 {
   delete drivetrain;
+  delete climber;
   delete driver;
   delete goalFinder;
   delete webServer;
@@ -45,6 +47,7 @@ CTRobot::~CTRobot()
 void CTRobot::UpdateSubsystems()
 {
   drivetrain->Update();
+  climber->Update();
 }
 
 void CTRobot::Autonomous()
@@ -67,7 +70,7 @@ void CTRobot::OperatorControl()
   while (IsOperatorControl())
   {
     driver->Drive(drivetrain);
-
+    oper->Operate(climber);
     UpdateSubsystems();
 
     Wait(0.005);

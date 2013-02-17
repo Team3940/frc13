@@ -5,7 +5,9 @@ Drivetrain::Drivetrain() :
   leftFrontDrive(PWM_DRIVE_LEFT_FRONT),
   rightFrontDrive(PWM_DRIVE_RIGHT_FRONT),
   leftRearDrive(PWM_DRIVE_LEFT_REAR),
-  rightRearDrive(PWM_DRIVE_RIGHT_REAR)
+  rightRearDrive(PWM_DRIVE_RIGHT_REAR),
+  leftEncoder(DIO_ENCODER_LEFT_DRIVE_A, DIO_ENCODER_LEFT_DRIVE_B),
+  rightEncoder(DIO_ENCODER_RIGHT_DRIVE_A, DIO_ENCODER_RIGHT_DRIVE_B)
 {
 }
 

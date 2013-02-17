@@ -16,6 +16,9 @@ class Drivetrain
     Talon rightFrontDrive;
     Talon leftRearDrive;
     Talon rightRearDrive;
+    
+    Encoder leftEncoder;
+    Encoder rightEncoder;
 
     float leftThrottle;
     float rightThrottle;

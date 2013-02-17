@@ -16,6 +16,7 @@
 #define PWM_FRISBEE_ADVANCE         6
 #define PWM_HINGE                   7
 #define PWM_CONVEYOR                8
+#define PWM_SHOOTER_DEPLOY          9
 
 // Relays
 
@@ -26,6 +27,8 @@
 #define DIO_ENCODER_RIGHT_DRIVE_B   4
 #define DIO_ENCODER_HINGE_A         5
 #define DIO_ENCODER_HINGE_B         6
+#define DIO_ENCODER_CONVEYOR_A      7
+#define DIO_ENCODER_CONVEYOR_B      8
 
 // Analog Inputs
 

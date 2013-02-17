@@ -14,6 +14,8 @@ class Climber
   private:
     Talon conveyor;
     Talon hinge;
+    Encoder conveyorEncoder;
+    Encoder hingeEncoder;
 
     float conveyorThrottle;
     float hingeThrottle;

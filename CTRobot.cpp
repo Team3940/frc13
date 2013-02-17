@@ -18,7 +18,8 @@ CTRobot::CTRobot()
 
   //HttpVisionHandler *visionHandler = new HttpVisionHandler(goalFinder);
   //webServer->SetRequestHandler("/camera", visionHandler);
-
+  
+  /*
   SequentialCommand *seqCmd = new SequentialCommand();
   *seqCmd << new DriveCommand(drivetrain, 4, 0.21, 0.21)
           << new DelayCommand(1)
@@ -31,7 +32,8 @@ CTRobot::CTRobot()
           << new DriveCommand(drivetrain, 5, -0.25, -0.25)
           << new DelayCommand(1)
           << new DriveCommand(drivetrain, 5, -0.26, -0.26);
-  baseCmd = seqCmd;
+  */
+  baseCmd = new DelayCommand(15);
   std::cout << baseCmd->ToString() << std::endl;
 }
 

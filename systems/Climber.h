@@ -9,7 +9,13 @@ class Climber
   public:
     Climber();
     void Update();
-    void SetThrottles(float conveyorThrottle, float hingeThrottle);
+    void SetConveyorThrottle(float conveyorThrottle);
+    void SetHingeThrottle(float hingeThrottle);
+    
+    float GetConveyorPosition();
+    float GetConveyorRate();
+    float GetHingeAngle();
+    float GetHingeRate();
 
   private:
     Talon conveyor;
@@ -19,6 +25,7 @@ class Climber
 
     float conveyorThrottle;
     float hingeThrottle;
+    const float hingeRatio;
 };
 
 #endif

@@ -9,6 +9,7 @@ CTRobot::CTRobot()
 
   // initialize controllers
   driver = new HumanDriver();
+  oper = new HumanOperator();
 
   //goalFinder = new GoalFinder("10.39.40.11");
   //goalFinder->Start();

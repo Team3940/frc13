@@ -14,9 +14,12 @@ class Shooter
   public:
     Shooter();
     void Update();
+    ShooterDeployState GetCommandedDeployState();
     ShooterDeployState GetActualDeployState();
+    void Shoot();
     void StowShooter();
     void DeployShooter();
+    void ToggleShooterEnable();
 
   private:
     Talon shooter;
@@ -25,8 +28,12 @@ class Shooter
     Encoder shooterEncoder;
     DigitalInput deploySwitch;
     DigitalInput stowSwitch;
+    DigitalInput frisbeeAdvanceReference;
 
     ShooterDeployState commandedDeployState;
+    bool lastFrisbeeAdvance;
+    bool shoot;
+    bool enable;
 };
 
 #endif

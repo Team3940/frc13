@@ -6,6 +6,7 @@ CTRobot::CTRobot()
   // initialize systems
   drivetrain = new Drivetrain();
   climber = new Climber();
+  shooter = new Shooter();
 
   // initialize controllers
   driver = new HumanDriver();
@@ -15,6 +16,8 @@ CTRobot::CTRobot()
   //goalFinder->Start();
 
   webServer = new WebServer();
+
+  lcd = DriverStationLCD::GetInstance();
 
   //HttpVisionHandler *visionHandler = new HttpVisionHandler(goalFinder);
   //webServer->SetRequestHandler("/camera", visionHandler);
@@ -41,6 +44,7 @@ CTRobot::~CTRobot()
 {
   delete drivetrain;
   delete climber;
+  delete shooter;
   delete driver;
   delete goalFinder;
   delete webServer;
@@ -51,6 +55,38 @@ void CTRobot::UpdateSubsystems()
 {
   drivetrain->Update();
   climber->Update();
+  shooter->Update();
+}
+
+void CTRobot::UpdateDashboard()
+{
+  lcd->PrintfLine(DriverStationLCD::kUser_Line1, "Test data");
+  lcd->PrintfLine(DriverStationLCD::kUser_Line2, "Angle:  %f", climber->GetHingeAngle());
+  lcd->PrintfLine(DriverStationLCD::kUser_Line3, "Conveyor:  %f", climber->GetConveyorPosition());
+
+  switch (shooter->GetCommandedDeployState()) {
+    case STOWED:    lcd->PrintfLine(DriverStationLCD::kUser_Line4, "Shooter Command:  Stowed");
+                    break;
+    case DEPLOYED:  lcd->PrintfLine(DriverStationLCD::kUser_Line4, "Shooter Command:  Deployed");
+                    break;
+    case TRANSIT:   lcd->PrintfLine(DriverStationLCD::kUser_Line4, "Shooter Command:  Transit");
+                    break;
+    default:        lcd->PrintfLine(DriverStationLCD::kUser_Line4, "Shooter Command:  Unknown");
+                    break;
+  }
+
+  switch (shooter->GetActualDeployState()) {
+    case STOWED:    lcd->PrintfLine(DriverStationLCD::kUser_Line5, "Shooter Position:  Stowed");
+                    break;
+    case DEPLOYED:  lcd->PrintfLine(DriverStationLCD::kUser_Line5, "Shooter Position:  Deployed");
+                    break;
+    case TRANSIT:   lcd->PrintfLine(DriverStationLCD::kUser_Line5, "Shooter Position:  Transit");
+                    break;
+    default:        lcd->PrintfLine(DriverStationLCD::kUser_Line5, "Shooter Position:  Unknown");
+                    break;
+  }
+
+  lcd->UpdateLCD();
 }
 
 void CTRobot::Autonomous()
@@ -59,13 +95,17 @@ void CTRobot::Autonomous()
   while (IsAutonomous()) {
     baseCmd->Run();
     UpdateSubsystems();
+    UpdateDashboard();
     Wait(0.005);
   }
 }
 
 void CTRobot::Disabled()
 {
-  // do nothing
+  while (IsDisabled()) {
+    UpdateDashboard();
+    Wait(0.010);
+  }
 }
 
 void CTRobot::OperatorControl()
@@ -73,8 +113,9 @@ void CTRobot::OperatorControl()
   while (IsOperatorControl())
   {
     driver->Drive(drivetrain);
-    oper->Operate(climber);
+    oper->Operate(climber, shooter);
     UpdateSubsystems();
+    UpdateDashboard();
 
     Wait(0.005);
   }

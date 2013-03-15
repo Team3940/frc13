@@ -25,3 +25,8 @@ float GamepadF310::GetRightY()
 {
   return ds->GetStickAxis(port, 4) * -1;
 }
+
+bool GamepadF310::GetButton(int button)
+{
+  return (0x1 << (button - 1)) & ds->GetStickButtons(port);
+}

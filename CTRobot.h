@@ -9,6 +9,7 @@
 #include "systems/Drivetrain.h"
 #include "systems/Climber.h"
 #include "controllers/HumanDriver.h"
+#include "controllers/AutoOperator.h"
 #include "controllers/HumanOperator.h"
 
 class CTRobot : public SimpleRobot
@@ -20,6 +21,7 @@ class CTRobot : public SimpleRobot
     // subsystems
     Drivetrain *drivetrain;
     Climber *climber;
+    Shooter *shooter;
 
     // controllers
     HumanDriver *driver;
@@ -27,7 +29,10 @@ class CTRobot : public SimpleRobot
 
     AutoCommand *baseCmd;
 
+    DriverStationLCD *lcd;
+
     void UpdateSubsystems();
+    void UpdateDashboard();
 
   public:
     CTRobot();

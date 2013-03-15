@@ -6,8 +6,11 @@ Climber::Climber() :
   hinge(PWM_HINGE),
   conveyorEncoder(DIO_ENCODER_CONVEYOR_A, DIO_ENCODER_CONVEYOR_B),
   hingeEncoder(DIO_ENCODER_HINGE_A, DIO_ENCODER_HINGE_B),
-  hingeRatio((1.0 / 71.0) * (14.0 / 12.0))
+  hingeRatio(0.032356)
 {
+  // start encoders...
+  conveyorEncoder.Start();
+  hingeEncoder.Start();
 }
 
 void Climber::Update()
@@ -28,7 +31,7 @@ void Climber::SetHingeThrottle(float hingeThrottle)
 
 float Climber::GetConveyorPosition()
 {
-  return conveyorEncoder.GetDistance();
+  return conveyorEncoder.GetRaw();
 }
 
 float Climber::GetConveyorRate()
@@ -38,7 +41,7 @@ float Climber::GetConveyorRate()
 
 float Climber::GetHingeAngle()
 {
-  return hingeEncoder.GetDistance() * hingeRatio;
+  return hingeEncoder.GetRaw() * hingeRatio;
 }
 
 float Climber::GetHingeRate()

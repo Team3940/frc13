@@ -11,6 +11,7 @@ class GamepadF310
     float GetLeftY();
     float GetRightX();
     float GetRightY();
+    bool GetButton(int button);
 
   private:
     DriverStation *ds;

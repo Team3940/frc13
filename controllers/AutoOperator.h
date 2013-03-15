@@ -9,7 +9,11 @@ class AutoOperator
 {
   public:
     AutoOperator();
+    bool Test();
     void Operate(Climber *climber);
+
+  private:
+    GamepadF310 controller;
 };
 
 #endif

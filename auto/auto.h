@@ -8,5 +8,6 @@
 
 #include "DelayCommand.h"
 #include "DriveCommand.h"
+#include "ClimbCommand.h"
 
 #endif

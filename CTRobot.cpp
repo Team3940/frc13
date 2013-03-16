@@ -36,8 +36,16 @@ CTRobot::CTRobot()
           << new DelayCommand(1)
           << new DriveCommand(drivetrain, 5, -0.26, -0.26);
   */
-  baseCmd = new DelayCommand(15);
-  std::cout << baseCmd->ToString() << std::endl;
+
+  SequentialCommand *seqCmd = new SequentialCommand();
+  *seqCmd << new ClimbCommand(climber, 0, 24)
+          << new DelayCommand(1)
+          << new ClimbCommand(climber, 0, 0)
+          << new DelayCommand(1);
+
+  baseCmd = seqCmd;
+
+  //std::cout << baseCmd->ToString() << std::endl;
 }
 
 CTRobot::~CTRobot()
@@ -60,29 +68,28 @@ void CTRobot::UpdateSubsystems()
 
 void CTRobot::UpdateDashboard()
 {
-  lcd->PrintfLine(DriverStationLCD::kUser_Line1, "Test data");
-  lcd->PrintfLine(DriverStationLCD::kUser_Line2, "Angle:  %f", climber->GetHingeAngle());
-  lcd->PrintfLine(DriverStationLCD::kUser_Line3, "Conveyor:  %f", climber->GetConveyorPosition());
+  lcd->PrintfLine(DriverStationLCD::kUser_Line1, "Angle:  %f", climber->GetHingeAngle());
+  lcd->PrintfLine(DriverStationLCD::kUser_Line2, "Conveyor:  %f", climber->GetConveyorPosition());
 
   switch (shooter->GetCommandedDeployState()) {
-    case STOWED:    lcd->PrintfLine(DriverStationLCD::kUser_Line4, "Shooter Command:  Stowed");
+    case STOWED:    lcd->PrintfLine(DriverStationLCD::kUser_Line3, "Stowing shooter");
                     break;
-    case DEPLOYED:  lcd->PrintfLine(DriverStationLCD::kUser_Line4, "Shooter Command:  Deployed");
+    case DEPLOYED:  lcd->PrintfLine(DriverStationLCD::kUser_Line3, "Deploying shooter");
                     break;
-    case TRANSIT:   lcd->PrintfLine(DriverStationLCD::kUser_Line4, "Shooter Command:  Transit");
+    case TRANSIT:   lcd->PrintfLine(DriverStationLCD::kUser_Line3, "");
                     break;
-    default:        lcd->PrintfLine(DriverStationLCD::kUser_Line4, "Shooter Command:  Unknown");
+    default:        lcd->PrintfLine(DriverStationLCD::kUser_Line3, "");
                     break;
   }
 
   switch (shooter->GetActualDeployState()) {
-    case STOWED:    lcd->PrintfLine(DriverStationLCD::kUser_Line5, "Shooter Position:  Stowed");
+    case STOWED:    lcd->PrintfLine(DriverStationLCD::kUser_Line4, "Shooter Stowed");
                     break;
-    case DEPLOYED:  lcd->PrintfLine(DriverStationLCD::kUser_Line5, "Shooter Position:  Deployed");
+    case DEPLOYED:  lcd->PrintfLine(DriverStationLCD::kUser_Line4, "Shooter Deployed");
                     break;
-    case TRANSIT:   lcd->PrintfLine(DriverStationLCD::kUser_Line5, "Shooter Position:  Transit");
+    case TRANSIT:   lcd->PrintfLine(DriverStationLCD::kUser_Line4, "Shooter Transit");
                     break;
-    default:        lcd->PrintfLine(DriverStationLCD::kUser_Line5, "Shooter Position:  Unknown");
+    default:        lcd->PrintfLine(DriverStationLCD::kUser_Line4, "Shooter Unknown");
                     break;
   }
 

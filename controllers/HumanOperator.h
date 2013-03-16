@@ -16,6 +16,7 @@ class HumanOperator
     GamepadF310 controller;
     bool lastTrigger;
     bool lastShooterEnable;
+    bool lastFollowerEnable;
 };
 
 #endif

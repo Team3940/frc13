@@ -17,7 +17,7 @@
 #define PWM_HINGE                   7
 #define PWM_CONVEYOR                8
 #define PWM_SHOOTER_FRISBEE_ADVANCE 6
-#define PWM_FRISBEE_COMPRESS        9
+#define PWM_FRISBEE_FOLLOWER        9
 
 // Relays
 

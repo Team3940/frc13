@@ -20,11 +20,13 @@ class Shooter
     void StowShooter();
     void DeployShooter();
     void ToggleShooterEnable();
+    void ToggleFollowerEnable();
 
   private:
     Talon shooter;
     Talon frisbeeAdvance;
     Talon deploy;
+    Servo frisbeeFollower;
     Encoder shooterEncoder;
     DigitalInput deploySwitch;
     DigitalInput stowSwitch;
@@ -33,6 +35,7 @@ class Shooter
     ShooterDeployState commandedDeployState;
     bool lastFrisbeeAdvance;
     bool shoot;
+    bool follower;
     bool enable;
 };
 

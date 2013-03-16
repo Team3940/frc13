@@ -12,6 +12,7 @@ void HumanOperator::Operate(Climber *climber, Shooter *shooter)
   bool deployShooter = controller.GetButton(2);
   bool stowShooter = controller.GetButton(3);
   bool currentShooterEnable = controller.GetButton(4);
+  bool currentFollowerEnable = controller.GetButton(6);
 
   // climber
   climber->SetHingeThrottle(controller.GetLeftY());
@@ -29,9 +30,15 @@ void HumanOperator::Operate(Climber *climber, Shooter *shooter)
     shooter->ToggleShooterEnable();
   }
 
+  // frisbee follower (compression)
+  if (currentFollowerEnable && !lastFollowerEnable) {
+    shooter->ToggleFollowerEnable();
+  }
+
   if (trigger) {
     shooter->Shoot();
   }
 
   lastShooterEnable = currentShooterEnable;
+  lastFollowerEnable = currentFollowerEnable;
 }

@@ -11,6 +11,7 @@ CTRobot::CTRobot()
   // initialize controllers
   driver = new HumanDriver();
   oper = new HumanOperator();
+  autoOperator = new AutoOperator(climber);
 
   //goalFinder = new GoalFinder("10.39.40.11");
   //goalFinder->Start();
@@ -38,11 +39,11 @@ CTRobot::CTRobot()
   */
 
   SequentialCommand *seqCmd = new SequentialCommand();
-  *seqCmd << new ClimbCommand(climber, 0, 24)
-          << new DelayCommand(1)
-          << new ClimbCommand(climber, 0, 0)
+  *seqCmd << new ClimbCommand(autoOperator, 96, 18.74)
+          << new ClimbCommand(autoOperator, 96, 31.9)
+          << new ClimbCommand(autoOperator, 183, 36)
+          << new ClimbCommand(autoOperator, 253, 39.25)
           << new DelayCommand(1);
-
   baseCmd = seqCmd;
 
   //std::cout << baseCmd->ToString() << std::endl;
@@ -107,6 +108,7 @@ void CTRobot::Autonomous()
   baseCmd->Reset();
   while (IsAutonomous()) {
     baseCmd->Run();
+    autoOperator->Operate();
     UpdateSubsystems();
     UpdateDashboard();
     Wait(0.005);
@@ -129,7 +131,6 @@ void CTRobot::OperatorControl()
     oper->Operate(climber, shooter);
     UpdateSubsystems();
     UpdateDashboard();
-
     Wait(0.005);
   }
 }

@@ -33,7 +33,7 @@ void Climber::SetHingeThrottle(float hingeThrottle)
 
 float Climber::GetConveyorPosition()
 {
-  return conveyorEncoder.GetRaw() * conveyorRatio;
+  return conveyorEncoder.GetRaw() * conveyorRatio + 18.74;
 }
 
 float Climber::GetConveyorRate()
@@ -43,7 +43,7 @@ float Climber::GetConveyorRate()
 
 float Climber::GetHingeAngle()
 {
-  return hingeEncoder.GetRaw() * hingeRatio + 73;
+  return hingeEncoder.GetRaw() * hingeRatio + 90;  // stow: 73
 }
 
 float Climber::GetHingeRate()

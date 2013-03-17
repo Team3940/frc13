@@ -1,7 +1,8 @@
 #ifndef CLIMBCOMMAND_H
 #define CLIMBCOMMAND_H
 
-#include "AutoCommand.h"
+#include "../auto/AutoCommand.h"
+#include "../controllers/AutoOperator.h"
 #include "../systems/Climber.h"
 #include "WPILib.h"
 
@@ -17,11 +18,11 @@ class ClimbCommand : public AutoCommand
     /**
      * Constructs a new ClimbCommand.
      *
-     * @param climber A climber object to send commands to
+     * @param autoCtrl
      * @param hingeAngle hinge angle in degrees
      * @param conveyorDistance conveyor position in inches
      */
-    ClimbCommand(Climber *climber, float hingeAngle, float conveyorDistance);
+    ClimbCommand(AutoOperator *autoCtrl, float hingeAngle, float conveyorDistance);
 
     virtual ~ClimbCommand();
 
@@ -32,7 +33,7 @@ class ClimbCommand : public AutoCommand
     virtual bool Run();
 
   private:
-    Climber *climber; ///< Used to control the Climber subsystem
+    AutoOperator *autoCtrl; ///< Used to control the Climber subsystem
     float hingeAngle;
     float conveyorDistance;
 };

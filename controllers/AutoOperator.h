@@ -8,12 +8,21 @@
 class AutoOperator
 {
   public:
-    AutoOperator();
-    bool Test();
-    void Operate(Climber *climber);
+    AutoOperator(Climber *climber);
+    void Operate();
+
+    void SetDesiredHingeAngle(float angle);
+    void SetDesiredConveyorDistance(float distance);
+
+    bool AutoOperator::AtDesiredPosition();
+    bool AutoOperator::AtDesiredHingeAngle();
+    bool AutoOperator::AtDesiredConveyorDistance();
 
   private:
+    Climber *climber;
     GamepadF310 controller;
+    float desiredHingeAngle;
+    float desiredConveyor;
 };
 
 #endif

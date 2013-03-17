@@ -26,6 +26,7 @@ class CTRobot : public SimpleRobot
     // controllers
     HumanDriver *driver;
     HumanOperator *oper;
+    AutoOperator *autoOperator;
 
     AutoCommand *baseCmd;
 

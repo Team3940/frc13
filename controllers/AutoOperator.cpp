@@ -1,24 +1,58 @@
 #include "AutoOperator.h"
+#include <cmath>
 
-AutoOperator::AutoOperator() : controller(2)
+AutoOperator::AutoOperator(Climber *climber) : controller(2)
 {
+  this->climber = climber;
+  desiredConveyor = 0;
+  desiredHingeAngle = 73;
 }
 
-bool AutoOperator::Test()
+void AutoOperator::SetDesiredHingeAngle(float angle)
 {
-  return controller.GetButton(1);
+  desiredHingeAngle = angle;
 }
 
-void AutoOperator::Operate(Climber *climber)
+void AutoOperator::SetDesiredConveyorDistance(float distance)
 {
+  desiredConveyor = distance;
+}
+
+bool AutoOperator::AtDesiredPosition()
+{
+  return AtDesiredHingeAngle() && AtDesiredConveyorDistance();
+}
+
+bool AutoOperator::AtDesiredHingeAngle()
+{
+  return fabs(climber->GetHingeAngle() - desiredHingeAngle) < 2.5;
+}
+
+bool AutoOperator::AtDesiredConveyorDistance()
+{
+  return fabs(climber->GetConveyorPosition() - desiredConveyor) < 0.125;
+}
+
+void AutoOperator::Operate()
+{
+  climber->SetHingeThrottle(0);
   climber->SetConveyorThrottle(0);
-  climber->SetHingeThrottle(0.00);
-  
-  if (controller.GetButton(1)) {
-    climber->SetConveyorThrottle(-0.25);
-    climber->SetHingeThrottle(-0.25);
-  } else {
-    climber->SetHingeThrottle(controller.GetLeftY());
-    climber->SetConveyorThrottle(controller.GetRightY());
+
+  // set conveyor throttles
+  if (!AtDesiredConveyorDistance()) {
+    if (climber->GetConveyorPosition() < desiredConveyor) {
+      climber->SetConveyorThrottle(-0.60);
+    } else if (climber->GetConveyorPosition() > desiredConveyor) {
+      climber->SetConveyorThrottle(0.60);
+    }
+  }
+
+  // set hinge throttles
+  if (!AtDesiredHingeAngle()) {
+    if (climber->GetHingeAngle() < desiredHingeAngle) {
+      climber->SetHingeThrottle(0.60);
+    } else if (climber->GetHingeAngle() > desiredHingeAngle) {
+      climber->SetHingeThrottle(-0.60);
+    }
   }
 }

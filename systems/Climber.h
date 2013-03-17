@@ -36,11 +36,15 @@ class Climber
      */
     float GetHingeRate();
 
+    bool GetHingeRef();
+    void Reset();
+
   private:
     Talon conveyor;
     Talon hinge;
     Encoder conveyorEncoder;
     Encoder hingeEncoder;
+    DigitalInput hingeReferenceSwitch;
 
     float conveyorThrottle;
     float hingeThrottle;

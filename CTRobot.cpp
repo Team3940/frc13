@@ -93,6 +93,12 @@ void CTRobot::UpdateDashboard()
                     break;
   }
 
+  if (climber->GetHingeRef()) {
+    lcd->PrintfLine(DriverStationLCD::kUser_Line5, "Hinge: 1");
+  } else {
+    lcd->PrintfLine(DriverStationLCD::kUser_Line5, "Hinge: 0");
+  }
+
   lcd->UpdateLCD();
 }
 

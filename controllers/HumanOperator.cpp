@@ -14,6 +14,11 @@ void HumanOperator::Operate(Climber *climber, Shooter *shooter)
   bool currentShooterEnable = controller.GetButton(4);
   bool currentFollowerEnable = controller.GetButton(6);
 
+  // reset encoders
+  if (controller.GetButton(5)) {
+    climber->Reset();
+  }
+
   // climber
   climber->SetHingeThrottle(controller.GetLeftY());
   climber->SetConveyorThrottle(controller.GetRightY());

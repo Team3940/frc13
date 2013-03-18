@@ -52,7 +52,7 @@ CTRobot::CTRobot()
 */
 
   SequentialCommand *seqCmd = new SequentialCommand();
-  *seqCmd << new ClimbCommand(autoOperator, 100, 12 + 18.74)
+  *seqCmd << new ClimbCommand(autoOperator, 109, 12 + 18.74)
           << new DeployShooterCommand(shooter)
           << new DelayCommand(1);
   baseCmd = seqCmd;

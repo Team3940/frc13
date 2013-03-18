@@ -14,7 +14,7 @@ Shooter::Shooter() :
   commandedDeployState = TRANSIT;
   shoot = false;
   enable = false;
-  follower = false;
+  follower = true;
 }
 
 ShooterDeployState Shooter::GetCommandedDeployState()

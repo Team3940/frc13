@@ -42,7 +42,9 @@ CTRobot::CTRobot()
   *seqCmd << new ClimbCommand(autoOperator, 96, 18.74)
           << new ClimbCommand(autoOperator, 96, 31.9)
           << new ClimbCommand(autoOperator, 183, 36)
-          << new ClimbCommand(autoOperator, 253, 39.25)
+          << new ClimbCommand(autoOperator, 253, 38.5)
+          << new ClimbCommand(autoOperator, 255, 39.25)
+          << new ClimbCommand(autoOperator, 218, 42)
           << new DelayCommand(1);
   baseCmd = seqCmd;
 

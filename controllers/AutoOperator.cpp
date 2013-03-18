@@ -41,18 +41,18 @@ void AutoOperator::Operate()
   // set conveyor throttles
   if (!AtDesiredConveyorDistance()) {
     if (climber->GetConveyorPosition() < desiredConveyor) {
-      climber->SetConveyorThrottle(-0.60);
+      climber->SetConveyorThrottle(-0.80);
     } else if (climber->GetConveyorPosition() > desiredConveyor) {
-      climber->SetConveyorThrottle(0.60);
+      climber->SetConveyorThrottle(0.80);
     }
   }
 
   // set hinge throttles
   if (!AtDesiredHingeAngle()) {
     if (climber->GetHingeAngle() < desiredHingeAngle) {
-      climber->SetHingeThrottle(0.60);
+      climber->SetHingeThrottle(0.80);
     } else if (climber->GetHingeAngle() > desiredHingeAngle) {
-      climber->SetHingeThrottle(-0.60);
+      climber->SetHingeThrottle(-0.80);
     }
   }
 }

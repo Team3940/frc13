@@ -58,6 +58,11 @@ void Shooter::ToggleFollowerEnable()
   follower = !follower;
 }
 
+void Shooter::SetShooterEnable(bool enable)
+{
+  this->enable = enable;
+}
+
 void Shooter::Update()
 {
   bool currentFrisbeeAdvance = frisbeeAdvanceReference.Get();

@@ -21,6 +21,7 @@ class Shooter
     void DeployShooter();
     void ToggleShooterEnable();
     void ToggleFollowerEnable();
+    void SetShooterEnable(bool enable);
 
   private:
     Talon shooter;

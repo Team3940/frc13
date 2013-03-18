@@ -38,6 +38,8 @@ CTRobot::CTRobot()
           << new DriveCommand(drivetrain, 5, -0.26, -0.26);
   */
 
+  // auto climb
+/*
   SequentialCommand *seqCmd = new SequentialCommand();
   *seqCmd << new ClimbCommand(autoOperator, 96, 18.74)
           << new ClimbCommand(autoOperator, 96, 31.9)
@@ -45,6 +47,13 @@ CTRobot::CTRobot()
           << new ClimbCommand(autoOperator, 253, 38.5)
           << new ClimbCommand(autoOperator, 255, 39.25)
           << new ClimbCommand(autoOperator, 218, 42)
+          << new DelayCommand(1);
+  baseCmd = seqCmd;
+*/
+
+  SequentialCommand *seqCmd = new SequentialCommand();
+  *seqCmd << new ClimbCommand(autoOperator, 100, 12 + 18.74)
+          << new DeployShooterCommand(shooter)
           << new DelayCommand(1);
   baseCmd = seqCmd;
 

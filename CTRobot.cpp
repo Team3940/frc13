@@ -103,10 +103,10 @@ void CTRobot::UpdateDashboard()
                     break;
   }
 
-  if (climber->GetHingeRef()) {
-    lcd->PrintfLine(DriverStationLCD::kUser_Line5, "Hinge: 1");
+  if (shooter->GetShooterEnable()) {
+    lcd->PrintfLine(DriverStationLCD::kUser_Line5, "Shooter On");
   } else {
-    lcd->PrintfLine(DriverStationLCD::kUser_Line5, "Hinge: 0");
+    lcd->PrintfLine(DriverStationLCD::kUser_Line5, "Shooter Off");
   }
 
   lcd->UpdateLCD();

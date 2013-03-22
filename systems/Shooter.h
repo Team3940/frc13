@@ -21,6 +21,7 @@ class Shooter
     void DeployShooter();
     void ToggleShooterEnable();
     void ToggleFollowerEnable();
+    bool GetShooterEnable();
     void SetShooterEnable(bool enable);
 
   private:

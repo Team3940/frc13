@@ -63,6 +63,11 @@ void Shooter::SetShooterEnable(bool enable)
   this->enable = enable;
 }
 
+bool Shooter::GetShooterEnable()
+{
+  return enable;
+}
+
 void Shooter::Update()
 {
   bool currentFrisbeeAdvance = frisbeeAdvanceReference.Get();

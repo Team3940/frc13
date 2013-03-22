@@ -70,11 +70,11 @@ void Shooter::Update()
   shooter.Set(enable ? -1 : 0);
 
   // frisbee advance
-  if (shoot || !currentFrisbeeAdvance) {
-    frisbeeAdvance.Set(-1);
-    if (!currentFrisbeeAdvance) {
-      shoot = false;
-    }
+  if (lastFrisbeeAdvance && !currentFrisbeeAdvance) {
+    shoot = false;
+  }
+  if (shoot) {
+      frisbeeAdvance.Set(-1);
   } else {
     frisbeeAdvance.Set(0);
   }

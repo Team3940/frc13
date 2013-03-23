@@ -10,6 +10,9 @@ Climber::Climber() :
   hingeRatio(0.032356),
   conveyorRatio(23.875 / 35677)
 {
+  conveyorThrottle = 0;
+  hingeThrottle = 0;
+  
   // start encoders...
   conveyorEncoder.Start();
   hingeEncoder.Start();

@@ -9,6 +9,8 @@ Drivetrain::Drivetrain() :
   leftEncoder(DIO_ENCODER_LEFT_DRIVE_A, DIO_ENCODER_LEFT_DRIVE_B),
   rightEncoder(DIO_ENCODER_RIGHT_DRIVE_A, DIO_ENCODER_RIGHT_DRIVE_B)
 {
+  leftThrottle = 0;
+  rightThrottle = 0;
 }
 
 void Drivetrain::Update()

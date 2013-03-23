@@ -49,10 +49,14 @@ CTRobot::CTRobot()
           << new DelayCommand(10);
   baseCmd = seqCmd;
 */
+  
+  // auto shoot
+  
   SequentialCommand *seqCmd = new SequentialCommand();
-  *seqCmd << new ClimbCommand(autoOperator, 106, 12 + 18.74)
+  *seqCmd << new ResetClimberPositon(climber)
+          << new ClimbCommand(autoOperator, 106.375, 12 + 18.74)  // change second number for shooter angle, from 90 degree start
           << new DeployShooterCommand(shooter)
-          << new DelayCommand(1);
+          << new DelayCommand(60);
   baseCmd = seqCmd;
 
   //std::cout << baseCmd->ToString() << std::endl;

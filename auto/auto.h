@@ -6,6 +6,7 @@
 #include "CompositeCommand.h"
 #include "SequentialCommand.h"
 #include "DeployShooterCommand.h"
+#include "ResetClimberPositon.h"
 
 #include "DelayCommand.h"
 #include "DriveCommand.h"
